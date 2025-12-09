@@ -1,4 +1,3 @@
-
 // Data for Services
 const serviceData = {
     'financial-planning': {
@@ -85,6 +84,34 @@ function showServiceDetail(serviceKey) {
         document.getElementById('detail-content').innerHTML = data.content;
         router('service-detail');
     }
+}
+
+// Insights Filter Function
+function filterInsights(category, btnElement) {
+    // Update buttons styling
+    if (btnElement) {
+        document.querySelectorAll('#insight-filters .filter-btn').forEach(btn => {
+            btn.classList.remove('bg-blue-900', 'text-white', 'active');
+            btn.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+        });
+
+        // Add active style to clicked button
+        btnElement.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+        btnElement.classList.add('bg-blue-900', 'text-white', 'active');
+    }
+
+    // Filter items
+    const cards = document.querySelectorAll('.insight-card');
+    cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+            // simple animation
+            card.style.opacity = '0';
+            setTimeout(() => card.style.opacity = '1', 50);
+        } else {
+            card.style.display = 'none';
+        }
+    });
 }
 
 // Mobile Menu Toggle

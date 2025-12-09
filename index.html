@@ -559,23 +559,24 @@
                     </div>
 
                     <!-- Category Filters -->
-                    <div class="flex flex-wrap gap-4 mb-12">
-                        <button
-                            class="px-4 py-2 bg-blue-900 text-white rounded-full text-sm font-medium hover:bg-blue-800 transition">All</button>
-                        <button
-                            class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-blue-900 hover:text-blue-900 transition">Tax
+                    <div class="flex flex-wrap gap-4 mb-12" id="insight-filters">
+                        <button onclick="filterInsights('all', this)"
+                            class="filter-btn active px-4 py-2 bg-blue-900 text-white rounded-full text-sm font-medium hover:bg-blue-800 transition shadow-sm border border-transparent">All</button>
+                        <button onclick="filterInsights('tax-strategy', this)"
+                            class="filter-btn px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-blue-900 hover:text-blue-900 transition shadow-sm">Tax
                             Strategy</button>
-                        <button
-                            class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-blue-900 hover:text-blue-900 transition">Investing</button>
-                        <button
-                            class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-blue-900 hover:text-blue-900 transition">Business</button>
-                        <button
-                            class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-blue-900 hover:text-blue-900 transition">Retirement</button>
+                        <button onclick="filterInsights('investing', this)"
+                            class="filter-btn px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-blue-900 hover:text-blue-900 transition shadow-sm">Investing</button>
+                        <button onclick="filterInsights('business', this)"
+                            class="filter-btn px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-blue-900 hover:text-blue-900 transition shadow-sm">Business</button>
+                        <button onclick="filterInsights('retirement', this)"
+                            class="filter-btn px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-blue-900 hover:text-blue-900 transition shadow-sm">Retirement</button>
                     </div>
 
-                    <div class="grid md:grid-cols-3 gap-8">
+                    <div class="grid md:grid-cols-3 gap-8" id="insights-grid">
                         <!-- Article 1 -->
-                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="insight-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
+                            data-category="tax-strategy">
                             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 class="w-full h-48 object-cover">
                             <div class="p-6">
@@ -591,7 +592,8 @@
                         </div>
 
                         <!-- Article 2 -->
-                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="insight-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
+                            data-category="investing">
                             <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 class="w-full h-48 object-cover">
                             <div class="p-6">
@@ -605,7 +607,8 @@
                         </div>
 
                         <!-- Article 3 -->
-                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="insight-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
+                            data-category="business">
                             <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 class="w-full h-48 object-cover">
                             <div class="p-6">
@@ -613,6 +616,22 @@
                                 <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">Scaling Your Operations</h3>
                                 <p class="text-gray-600 mb-4 text-sm">Key indicators that it is time to expand your team
                                     and infrastructure.</p>
+                                <a href="#" onclick="alert('Article view simulated'); return false;"
+                                    class="text-blue-900 font-medium hover:underline">Read Article</a>
+                            </div>
+                        </div>
+
+                        <!-- Article 4 (Added for Retirement category to have content) -->
+                        <div class="insight-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
+                            data-category="retirement">
+                            <img src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <span
+                                    class="text-xs font-bold text-amber-600 uppercase tracking-wider">Retirement</span>
+                                <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">Retirement Planning 101</h3>
+                                <p class="text-gray-600 mb-4 text-sm">How to start saving early and compounding your
+                                    wealth for the future.</p>
                                 <a href="#" onclick="alert('Article view simulated'); return false;"
                                     class="text-blue-900 font-medium hover:underline">Read Article</a>
                             </div>
@@ -773,19 +792,23 @@
                                 class="hover:text-amber-500 transition">Insights</a></li>
                         <li><a href="#" onclick="router('contact')" class="hover:text-amber-500 transition">Contact</a>
                         </li>
-                        <li><a href="#" class="hover:text-amber-500 transition">Careers</a></li>
+                        <li><a href="#" onclick="event.preventDefault(); alert('Careers page is coming soon.');"
+                                class="hover:text-amber-500 transition">Careers</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-4">Connect</h4>
                     <div class="flex space-x-4 mb-4">
                         <a href="#"
+                            onclick="event.preventDefault(); alert('This is a placeholder for the LinkedIn profile.');"
                             class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-white transition"><i
                                 class="fa-brands fa-linkedin-in"></i></a>
                         <a href="#"
+                            onclick="event.preventDefault(); alert('This is a placeholder for the Twitter profile.');"
                             class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-white transition"><i
                                 class="fa-brands fa-twitter"></i></a>
                         <a href="#"
+                            onclick="event.preventDefault(); alert('This is a placeholder for the Facebook profile.');"
                             class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-500 hover:text-white transition"><i
                                 class="fa-brands fa-facebook-f"></i></a>
                     </div>
@@ -795,8 +818,10 @@
                 class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
                 <p>&copy; 2023 Vertex Financial Group. All rights reserved.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-white">Privacy Policy</a>
-                    <a href="#" class="hover:text-white">Terms of Service</a>
+                    <a href="#" onclick="event.preventDefault(); alert('Privacy Policy placeholder.');"
+                        class="hover:text-white">Privacy Policy</a>
+                    <a href="#" onclick="event.preventDefault(); alert('Terms of Service placeholder.');"
+                        class="hover:text-white">Terms of Service</a>
                 </div>
             </div>
         </div>
